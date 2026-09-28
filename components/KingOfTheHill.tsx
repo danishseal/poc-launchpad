@@ -6,8 +6,18 @@ export function KingOfTheHill({ coin }: { coin: (typeof mockCoins)[number] }) {
     <a className="create-link" href="/create">[start a new coin]</a>
     <div className="king-heading">king of the hill</div>
     <a className="king-coin" href={`/t/${coin.mint}`} >
-      <Image src={coin.image} alt={coin.name} width={80} height={80} />
-      <div><p className="coin-meta">market cap: ${Math.round(coin.usd_market_cap ?? coin.market_cap ?? 0).toLocaleString()}</p><p className="coin-meta">replies: {coin.reply_count ?? 0}</p><p className="coin-name">{coin.name} [ticker: {coin.symbol}]</p><p className="coin-description">{coin.description}</p></div>
+      <span className="coin-card-lines" aria-hidden="true" />
+      <div className="king-coin-body">
+        <Image src={coin.image} alt={coin.name} width={80} height={80} />
+        <div className="king-coin-copy">
+          <p className="coin-name">{coin.name} [ticker: {coin.symbol}]</p>
+          {coin.description && <p className="coin-description">{coin.description}</p>}
+          <div className="coin-card-stats">
+            <p className="coin-meta">market cap: <strong>${Math.round(coin.usd_market_cap ?? coin.market_cap ?? 0).toLocaleString()}</strong></p>
+            <p className="coin-meta">replies: <strong>{coin.reply_count ?? 0}</strong></p>
+          </div>
+        </div>
+      </div>
     </a>
   </section>;
 }

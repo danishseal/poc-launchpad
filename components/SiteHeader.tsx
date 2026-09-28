@@ -1,8 +1,9 @@
 import Image from "next/image";
+import type { ReactNode } from "react";
 
-export function SiteHeader() {
+export function SiteHeader({ search }: { search?: ReactNode }) {
   return (
-    <header className="site-header">
+    <header className={`site-header${search ? " site-header-with-search" : ""}`}>
       <a href="/board" aria-label="Pump home" className="logo-link">
         <Image src="/pump-logo.png" alt="Pump" width={25} height={25} />
       </a>
@@ -13,6 +14,7 @@ export function SiteHeader() {
         </div>
         <span>[telegram]</span>
       </nav>
+      {search}
       <button className="connect-wallet" type="button">[connect wallet]</button>
     </header>
   );
